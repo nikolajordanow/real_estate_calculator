@@ -1,0 +1,22 @@
+<mat-tab-group animationDuration="0ms" mat-stretch-tabs="false" mat-align-tabs="center">
+  <mat-tab label="{{ 'loan' | translate }}">
+    <div class="tab-container">
+      <loan-calculator></loan-calculator>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ 'rent' | translate }}">
+    <div class="tab-container">
+      <rent-calculator></rent-calculator>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ 'flip' | translate }}">
+    <div class="tab-container">
+      <flip-calculator></flip-calculator>
+    </div>
+  </mat-tab>
+  <mat-tab label="{{ 'constants' | translate }}">
+    <div class="tab-container">
+      <calculator-sidebar></calculator-sidebar>
+    </div>
+  </mat-tab>
+</mat-tab-group>

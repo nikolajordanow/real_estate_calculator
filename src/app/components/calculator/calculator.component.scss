@@ -1,0 +1,66 @@
+*:not(input):not(input *) {
+  margin: 0;
+  padding: 0;
+}
+
+.calculator {
+  display: block;
+  width: 100%;
+
+  .calculator-container {
+    display: block;
+    justify-self: center;
+    width: calc(37% + 420px);
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+
+    .separator {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 0.5em;
+      column-gap: 1.5em;
+
+      @media (max-width: 450px) {
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 451px) {
+        > :last-child:nth-child(odd) {
+          grid-column: 1 / -1;
+          justify-self: center;
+          width: 50%;
+        }
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 5.5em;
+
+        .template-label {
+          text-align: left;
+          display: flex;
+          align-items: center;
+          height: 100%;
+        }
+
+        .templateInput {
+          align-self: flex-end;
+          /* Make sure input sticks to the bottom */
+        }
+      }
+    }
+  }
+
+  .results {
+    background-color: white;
+
+    .result-label {
+      font-size: 1.2em;
+    }
+  }
+}
