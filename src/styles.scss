@@ -1,6 +1,72 @@
 @use '@angular/material' as mat;
-html, body { 
-    height: 100%; 
-    width: 100%;
+
+:root {
+  --color-primary: #1565C0;
+  --color-primary-dark: #0d47a1;
+  --color-primary-light: #e3f2fd;
+  --color-surface: #ffffff;
+  --color-background: #eef2f7;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-result-bg: #eff6ff;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --radius-card: 12px;
+  --radius-input: 6px;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* Material tab overrides */
+.mat-mdc-tab-header {
+  background: var(--color-surface);
+  box-shadow: 0 1px 0 0 var(--color-border);
+}
+
+.mat-mdc-tab-group {
+  --mdc-tab-indicator-active-indicator-color: var(--color-primary);
+  --mat-tab-header-active-label-text-color: var(--color-primary);
+  --mat-tab-header-active-focus-label-text-color: var(--color-primary);
+  --mat-tab-header-active-hover-label-text-color: var(--color-primary);
+  --mat-tab-header-active-ripple-color: var(--color-primary);
+  --mat-tab-header-inactive-ripple-color: var(--color-primary);
+}
+
+/* Language toggle inside header — white-on-dark */
+app-header .mat-button-toggle-group {
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border-radius: 6px !important;
+  overflow: hidden;
+}
+
+app-header .mat-button-toggle {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border: none !important;
+}
+
+app-header .mat-button-toggle-checked {
+  background: rgba(255, 255, 255, 0.22) !important;
+  color: #ffffff !important;
+}
+
+app-header .mat-button-toggle-button {
+  height: 32px !important;
+  padding: 0 14px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+app-header .mat-button-toggle-label-content {
+  line-height: 32px !important;
+}

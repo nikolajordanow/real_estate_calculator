@@ -1,16 +1,39 @@
 <div class="calculator">
-  <div class="calculator-container bg-light p-4 rounded shadow">
-    <section class="separator">
-      <div class="input-container" *ngFor="let input of inputs">
-        <label for="templateInput" class="template-label">{{ input.label | translate }}</label>
-        <input type="number" class="templateInput form-control" [placeholder]="input.placeholder"
-          [(ngModel)]="input.value" (input)="calculateResults()">
+  <div class="calc-card">
+    <div class="calc-inputs">
+      @for (input of inputs; track input.label) {
+        <div class="input-field">
+          <label class="input-label">{{ input.label | translate }}</label>
+          <div class="input-wrapper">
+            <span class="input-prefix">€</span>
+            <input
+              type="number"
+              class="calc-input"
+              [placeholder]="input.placeholder"
+              [(ngModel)]="input.value"
+              (input)="calculateResults()"
+            >
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (showResults) {
+      <div class="results-section">
+        <div class="results-grid">
+          @for (result of results; track result.label) {
+            <div class="result-card">
+              <div class="result-label">{{ result.label | translate }}</div>
+              <div class="result-value">
+                {{ result.value | number : '1.2-2' }}
+                @if (result.extention) {
+                  <span class="result-ext">{{ result.extention | translate }}</span>
+                }
+              </div>
+            </div>
+          }
+        </div>
       </div>
-    </section>
-    <section *ngIf="showResults" class="results mt-4 p-3 rounded">
-      <div *ngFor="let result of results">
-        <div class="template-label">{{ result.label| translate }}: {{ result.value | number : '1.2-2' }} {{ (result.extention || '') | translate}} </div>
-      </div>
-    </section>
+    }
   </div>
 </div>

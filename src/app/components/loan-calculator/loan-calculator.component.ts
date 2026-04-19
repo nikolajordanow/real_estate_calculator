@@ -5,8 +5,6 @@ import { calculateMonthlyPayment } from '../../../shared/utils';
 import { CalculatorComponent } from "../calculator/calculator.component";
 import { CalculatorInputModel } from '../../models/calculator-model/calculator-input';
 import { CalculatorResultModel } from '../../models/calculator-model/calculator-result';
-import { ConstantsService } from '../../../shared/services/constants.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'loan-calculator',
@@ -32,21 +30,15 @@ export class LoanCalculatorComponent {
     { label: 'total_payment', placeholder: null, value: null }
   ];
 
-  public showResults: boolean = false;
-
-  private constantsSub!: Subscription;
-
-  constructor(
-    private readonly _constantsService: ConstantsService
-  ) { }
-
   public calculateResults(): void {
-    const monthlyRate = (this.loanCalculatorInputProperties[2].value ?? 0) / 100 / 12;
-    const numberOfPayments = (this.loanCalculatorInputProperties[1].value ?? 0) * 12;
+    const [loanAmountInput, loanTermInput, annualRateInput] = this.loanCalculatorInputProperties;
+    const [monthlyPaymentOutput, totalPaymentOutput] = this.loanCalculatorOutputProperties;
 
-    const monthlyPayment = calculateMonthlyPayment(this.loanCalculatorInputProperties[0].value ?? 0, monthlyRate, numberOfPayments);
+    const monthlyRate = (annualRateInput.value ?? 0) / 100 / 12;
+    const numberOfPayments = (loanTermInput.value ?? 0) * 12;
+    const monthlyPayment = calculateMonthlyPayment(loanAmountInput.value ?? 0, monthlyRate, numberOfPayments);
 
-    this.loanCalculatorOutputProperties[0].value = monthlyPayment;
-    this.loanCalculatorOutputProperties[1].value = Number((monthlyPayment * numberOfPayments).toFixed(2));
+    monthlyPaymentOutput.value = monthlyPayment;
+    totalPaymentOutput.value = Number((monthlyPayment * numberOfPayments).toFixed(2));
   }
 }

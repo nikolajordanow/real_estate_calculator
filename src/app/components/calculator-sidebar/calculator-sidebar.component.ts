@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -15,7 +14,6 @@ import { ConstantsService } from '../../../shared/services/constants.service';
   templateUrl: './calculator-sidebar.component.html',
   styleUrl: './calculator-sidebar.component.scss',
   imports: [
-    CommonModule,
     TranslatePipe,
     MatButtonModule,
     FormsModule
@@ -70,13 +68,5 @@ export class CalculatorSidebarComponent implements OnInit, OnDestroy {
       saleCommissionPercent: this.consts['commissionPercent'].value,
       taxesPercent: this.consts['taxesPercent'].value,
     });
-  }
-
-  public onCommissionChange(value: number): void {
-    this._constantsService.updateState({ saleCommissionPercent: value });
-  }
-
-  public onTaxesChange(value: number): void {
-    this._constantsService.updateState({ taxesPercent: value });
   }
 }

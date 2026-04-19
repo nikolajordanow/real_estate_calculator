@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { CalculatorComponent } from './calculator.component';
 
@@ -8,7 +9,7 @@ describe('CalculatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CalculatorComponent]
+      imports: [CalculatorComponent, TranslateModule.forRoot()]
     })
     .compileComponents();
 

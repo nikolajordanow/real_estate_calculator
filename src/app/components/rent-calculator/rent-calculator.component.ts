@@ -57,25 +57,27 @@ export class RentCalculatorComponent implements OnInit, OnDestroy {
   }
 
   public calculateResults(): void {
-    const taxesPercent = this._constantsService.getState()?.taxesPercent;
+    const { taxesPercent } = this._constantsService.getState();
+    const [purchaseInput, repairInput, aprInput, yearsInput, squareMetersInput, downPaymentInput] = this.rentCalculatorInputProperties;
+    const [purchaseCostsOutput, creditOutput, monthlyPaymentOutput, evaluationOutput] = this.rentCalculatorOutputProperties;
 
-    const purchase = this.rentCalculatorInputProperties[0].value ?? 0;
-    const repair = this.rentCalculatorInputProperties[1].value ?? 0;
-    const apr = this.rentCalculatorInputProperties[2].value ?? 0;
-    const years = this.rentCalculatorInputProperties[3].value ?? 0;
-    const squareMeters = this.rentCalculatorInputProperties[4].value ?? 0;
-    const downPayment = this.rentCalculatorInputProperties[5].value ?? 0;
+    const purchase = purchaseInput.value ?? 0;
+    const repair = repairInput.value ?? 0;
+    const apr = aprInput.value ?? 0;
+    const years = yearsInput.value ?? 0;
+    const squareMeters = squareMetersInput.value ?? 0;
+    const downPayment = downPaymentInput.value ?? 0;
 
     const purchaseCosts = purchase * (1 + taxesPercent / 100);
     const credit = purchaseCosts + repair - downPayment;
     const monthlyRate = (apr / 100) / 12;
     const months = years * 12;
-    const monthlyPayment = calculateMonthlyPayment(credit, monthlyRate, months); 
+    const monthlyPayment = calculateMonthlyPayment(credit, monthlyRate, months);
     const evaluation = (credit / 0.85) / squareMeters;
 
-    this.rentCalculatorOutputProperties[0].value = purchaseCosts;
-    this.rentCalculatorOutputProperties[1].value = credit;
-    this.rentCalculatorOutputProperties[2].value = monthlyPayment;
-    this.rentCalculatorOutputProperties[3].value = evaluation;
+    purchaseCostsOutput.value = purchaseCosts;
+    creditOutput.value = credit;
+    monthlyPaymentOutput.value = monthlyPayment;
+    evaluationOutput.value = evaluation;
   }
 }
