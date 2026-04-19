@@ -24,6 +24,8 @@
   align-items: center;
   gap: 10px;
   color: #ffffff;
+  min-width: 0;
+  flex-shrink: 1;
 
   .brand-icon {
     width: 24px;
@@ -37,9 +39,12 @@
     font-weight: 500;
     letter-spacing: 0.3px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
 .header-actions {
   margin-left: auto;
+  flex-shrink: 0;
 }
