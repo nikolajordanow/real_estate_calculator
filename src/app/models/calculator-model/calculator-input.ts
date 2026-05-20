@@ -4,4 +4,5 @@ export interface CalculatorInputModel {
     value?: number | null;
     role?: string;
     possiblePlaces?: number[];
+    showPrefix?: boolean;
 }

@@ -21,8 +21,8 @@ import { CalculatorResultModel } from '../../models/calculator-model/calculator-
 export class LoanCalculatorComponent {
   public loanCalculatorInputProperties: CalculatorInputModel[] = [
     { placeholder: 0, label: 'loan_amount', value: null },
-    { placeholder: 0, label: 'loan_term', value: null },
-    { placeholder: 0, label: 'annual_interest_rate', value: null }
+    { placeholder: 0, label: 'loan_term', value: null, showPrefix: false },
+    { placeholder: 0, label: 'annual_interest_rate', value: null, showPrefix: false }
   ];
 
   public loanCalculatorOutputProperties: CalculatorResultModel[] = [

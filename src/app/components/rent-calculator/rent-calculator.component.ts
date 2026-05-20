@@ -26,9 +26,9 @@ export class RentCalculatorComponent implements OnInit, OnDestroy {
   public rentCalculatorInputProperties: CalculatorInputModel[] = [
     { placeholder: 0, label: 'purchase_price', value: null },
     { placeholder: 0, label: 'repair_costs', value: null },
-    { placeholder: 0, label: 'apr_percent', value: null },
-    { placeholder: 0, label: 'loan_years', value: null },
-    { placeholder: 0, label: 'square_meters', value: null },
+    { placeholder: 0, label: 'apr_percent', value: null, showPrefix: false },
+    { placeholder: 0, label: 'loan_years', value: null, showPrefix: false },
+    { placeholder: 0, label: 'square_meters', value: null, showPrefix: false },
     { placeholder: 0, label: 'down_payment', value: null }
   ];
 

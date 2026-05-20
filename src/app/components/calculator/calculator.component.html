@@ -5,7 +5,9 @@
         <div class="input-field">
           <label class="input-label">{{ input.label | translate }}</label>
           <div class="input-wrapper">
-            <span class="input-prefix">€</span>
+            @if (input.showPrefix !== false) {
+              <span class="input-prefix">€</span>
+            }
             <input
               type="number"
               class="calc-input"
