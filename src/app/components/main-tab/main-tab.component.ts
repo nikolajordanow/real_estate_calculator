@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RentCalculatorComponent } from '../rent-calculator/rent-calculator.component';
 import { FlipCalculatorComponent } from '../flip-calculator/flip-calculator.component';
+import { VatFlipCalculatorComponent } from '../vat-flip-calculator/vat-flip-calculator.component';
 import { LoanCalculatorComponent } from "../loan-calculator/loan-calculator.component";
 import { TranslatePipe } from '@ngx-translate/core';
 import { CalculatorSidebarComponent } from "../calculator-sidebar/calculator-sidebar.component";
@@ -15,6 +16,7 @@ import { CalculatorSidebarComponent } from "../calculator-sidebar/calculator-sid
     MatTabsModule,
     RentCalculatorComponent,
     FlipCalculatorComponent,
+    VatFlipCalculatorComponent,
     LoanCalculatorComponent,
     TranslatePipe,
     CalculatorSidebarComponent

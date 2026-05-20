@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm uninstall *)"
+      "Bash(npm uninstall *)",
+      "Bash(Get-ChildItem -Path \"d:\\\\projects\\\\nbinvest\\\\real_estate_calculator\\\\src\\\\app\\\\components\\\\flip-calculator\\\\\" -Recurse -File | Select-Object FullName)",
+      "Bash(Get-ChildItem -Path \"d:\\\\projects\\\\nbinvest\\\\real_estate_calculator\\\\src\\\\app\" -Name)"
     ]
   }
 }
