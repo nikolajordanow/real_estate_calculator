@@ -14,6 +14,8 @@
   "commission": "Commission",
   "sale_commission%": "Sale Commission (%)",
   "profit_eur": "Profit (EUR)",
+  "profit_percent": "Profit %",
+  "gross_profit_percent": "Gross Profit %",
   "profit_bgn": "Profit (BGN)",
   "apr_percent": "APR%",
   "loan_years": "Loan Years",
