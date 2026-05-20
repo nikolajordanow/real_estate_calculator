@@ -3,7 +3,7 @@
     <div class="calc-inputs">
       @for (input of inputs; track input.label) {
         <div class="input-field">
-          <label class="input-label">{{ input.label | translate }}</label>
+          <label class="input-label" [innerHTML]="input.label | translate"></label>
           <div class="input-wrapper">
             @if (input.showPrefix !== false) {
               <span class="input-prefix">€</span>

@@ -26,9 +26,9 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
   private readonly CORPORATE_TAX_RATE = 0.10;
 
   public vatFlipCalculatorInputProperties: CalculatorInputModel[] = [
-    { placeholder: 0, label: 'purchase_price', value: null },
-    { placeholder: 0, label: 'repair_costs', value: null },
-    { placeholder: 0, label: 'sale_price', value: null }
+    { placeholder: 0, label: 'purchase_price_vat', value: null },
+    { placeholder: 0, label: 'repair_costs_vat', value: null },
+    { placeholder: 0, label: 'sale_price_vat', value: null }
   ];
 
   public vatFlipCalculatorOutputProperties: CalculatorResultModel[] = [

@@ -1,8 +1,11 @@
 {
   "app_title": "Real Estate Calculator",
   "purchase_price": "Purchase Price",
+  "purchase_price_vat": "Purchase Price <strong>(incl. VAT)</strong>",
   "repair_costs": "Repair Costs",
+  "repair_costs_vat": "Repair Costs <strong>(incl. VAT)</strong>",
   "sale_price": "Sale Price",
+  "sale_price_vat": "Sale Price <strong>(incl. VAT)</strong>",
   "repayment_fee": "Repayment Fee",
   "profit_tax": "Profit Tax",
   "profit_tax_percent": "Profit Tax %",
