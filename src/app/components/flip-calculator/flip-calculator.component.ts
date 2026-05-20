@@ -5,7 +5,6 @@ import { CalculatorComponent } from "../calculator/calculator.component";
 import { CalculatorInputModel } from '../../models/calculator-model/calculator-input';
 import { CalculatorResultModel } from '../../models/calculator-model/calculator-result';
 import { ConstantsService } from '../../../shared/services/constants.service';
-import { EUR_TO_BGN } from '../../../shared/consts';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -35,8 +34,7 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
     { label: 'total_cost', placeholder: null, value: null },
     { label: 'profit_tax', placeholder: null, value: null },
     { label: 'commission', placeholder: null, value: null },
-    { label: 'profit_eur', placeholder: null, value: null },
-    { label: 'profit_bgn', placeholder: null, value: null }
+    { label: 'profit_eur', placeholder: null, value: null }
   ];
 
   constructor(
@@ -86,13 +84,9 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
     // gross profit
     const grossProfit = salePrice - repaymentFee - totalCost - commission;
 
-    // net profit EUR
-    const netProfitEUR = grossProfit - profitTax;
-    this.flipCalculatorOutputProperties[4].value = netProfitEUR;
-
-    // net profit BGN
-    const netProfitBGN = netProfitEUR * EUR_TO_BGN;
-    this.flipCalculatorOutputProperties[5].value = netProfitBGN;
+    // net profit
+    const netProfit = grossProfit - profitTax;
+    this.flipCalculatorOutputProperties[4].value = netProfit;
 
     // profit tax (already input by user)
     this.flipCalculatorOutputProperties[2].value = profitTax;

@@ -7,5 +7,4 @@ export interface CalcSidebarConstItem {
 export interface CalcSidebarConstModel {
     commPercent: CalcSidebarConstItem;
     taxesPercent: CalcSidebarConstItem;
-    eurToBgn: CalcSidebarConstItem;
 }

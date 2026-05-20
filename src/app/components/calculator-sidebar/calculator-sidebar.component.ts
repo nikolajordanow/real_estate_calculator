@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { COMMISSION_PERCENT, EUR_TO_BGN, TAXES_PERCENT } from '../../../shared/consts';
+import { COMMISSION_PERCENT, TAXES_PERCENT } from '../../../shared/consts';
 import { CalcSidebarConstItem } from '../../models/calc-sidebar-model';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -42,11 +42,6 @@ export class CalculatorSidebarComponent implements OnInit, OnDestroy {
         label: 'taxes%',
         value: this.taxesPercentValue,
         disabled: false
-      },
-      eurToBgn: {
-        label: 'eur to bgn',
-        value: EUR_TO_BGN,
-        disabled: true
       }
     };
   }

@@ -3,7 +3,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { FlipCalculatorComponent } from './flip-calculator.component';
 import { ConstantsService } from '../../../shared/services/constants.service';
-import { EUR_TO_BGN } from '../../../shared/consts';
 
 // Inputs:  purchasePrice=100000, repairCosts=10000, salePrice=150000, profitTax=2000
 // Default: taxesPercent=7%, saleCommissionPercent=2%
@@ -14,7 +13,6 @@ import { EUR_TO_BGN } from '../../../shared/consts';
 // repaymentFee  = 117000 * 0.01          = 1 170
 // grossProfit   = 150000 - 1170 - 117000 - 3000 = 28 830
 // netProfitEUR  = 28830 - 2000           = 26 830
-// netProfitBGN  = 26830 * EUR_TO_BGN
 
 describe('FlipCalculatorComponent', () => {
   let component: FlipCalculatorComponent;
@@ -69,12 +67,6 @@ describe('FlipCalculatorComponent', () => {
       expect(component.flipCalculatorOutputProperties[4].value).toBeCloseTo(26_830, 2);
     });
 
-    it('should calculate net profit in BGN', () => {
-      component.calculateResults();
-      const expectedBGN = 26_830 * EUR_TO_BGN;
-      expect(component.flipCalculatorOutputProperties[5].value).toBeCloseTo(expectedBGN, 5);
-    });
-
     it('should yield a negative profit when sale price is below total costs', () => {
       component.flipCalculatorInputProperties[2].value = 100_000; // salePrice below totalCost
       component.calculateResults();
@@ -90,7 +82,6 @@ describe('FlipCalculatorComponent', () => {
       expect(component.flipCalculatorOutputProperties[0].value).toBe(0); // taxes
       expect(component.flipCalculatorOutputProperties[1].value).toBe(0); // totalCost
       expect(component.flipCalculatorOutputProperties[4].value).toBe(0); // netProfitEUR
-      expect(component.flipCalculatorOutputProperties[5].value).toBe(0); // netProfitBGN
     });
 
     it('should recalculate taxes when taxesPercent changes', () => {
