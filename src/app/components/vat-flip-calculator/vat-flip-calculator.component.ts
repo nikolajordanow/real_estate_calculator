@@ -39,7 +39,9 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
     { label: 'taxes', placeholder: null, value: null },
     { label: 'commission', placeholder: null, value: null },
     { label: 'profit_tax', placeholder: null, value: null },
-    { label: 'profit_eur', placeholder: null, value: null }
+    { label: 'profit_eur', placeholder: null, value: null },
+    { label: 'gross_profit_percent', placeholder: null, value: null, extention: '%' },
+    { label: 'profit_percent', placeholder: null, value: null, extention: '%' }
   ];
 
   constructor(
@@ -102,5 +104,12 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
     // Final profit after corporate tax
     const finalProfit = profitBeforeCorporateTax - corporateTax;
     this.vatFlipCalculatorOutputProperties[7].value = finalProfit;
+
+    // Gross and net profit as % of total net investment
+    const totalNetInvestment = purchaseNet + renovationNet + localTaxesAndFees;
+    const grossProfitPercent = totalNetInvestment > 0 ? (profitBeforeCorporateTax / totalNetInvestment) * 100 : 0;
+    this.vatFlipCalculatorOutputProperties[8].value = grossProfitPercent;
+    const profitPercent = totalNetInvestment > 0 ? (finalProfit / totalNetInvestment) * 100 : 0;
+    this.vatFlipCalculatorOutputProperties[9].value = profitPercent;
   }
 }
