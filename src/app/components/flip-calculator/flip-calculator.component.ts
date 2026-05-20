@@ -34,7 +34,8 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
     { label: 'total_cost', placeholder: null, value: null },
     { label: 'profit_tax', placeholder: null, value: null },
     { label: 'commission', placeholder: null, value: null },
-    { label: 'profit_eur', placeholder: null, value: null }
+    { label: 'profit_eur', placeholder: null, value: null },
+    { label: 'profit_percent', placeholder: null, value: null, extention: '%' }
   ];
 
   constructor(
@@ -90,5 +91,9 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
 
     // profit tax (already input by user)
     this.flipCalculatorOutputProperties[2].value = profitTax;
+
+    // profit percent (net profit as % of total investment)
+    const profitPercent = totalCost > 0 ? (netProfit / totalCost) * 100 : 0;
+    this.flipCalculatorOutputProperties[5].value = profitPercent;
   }
 }
