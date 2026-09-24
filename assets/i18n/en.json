@@ -34,6 +34,7 @@
   "net_vat": "Net VAT",
   "flip": "Flip",
   "vat_flip": "VAT Flip",
+  "purchase_includes_vat": "The purchase includes VAT and is eligible for input VAT deduction",
   "loan": "Loan",
   "rent": "Rent",
   "monthly_rate": "Monthly Rate",
