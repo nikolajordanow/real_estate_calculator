@@ -22,19 +22,26 @@
 
     @if (showResults) {
       <div class="results-section">
-        <div class="results-grid">
-          @for (result of results; track result.label) {
-            <div class="result-card">
-              <div class="result-label">{{ result.label | translate }}</div>
-              <div class="result-value">
-                {{ result.value | number : '1.2-2' }}
-                @if (result.extention) {
-                  <span class="result-ext">{{ result.extention | translate }}</span>
-                }
-              </div>
+        @for (group of groupedResults; track group.category) {
+          <div class="result-group">
+            @if (group.category) {
+              <div class="result-group-header">{{ group.category | translate }}</div>
+            }
+            <div class="results-grid">
+              @for (result of group.items; track result.label) {
+                <div class="result-card">
+                  <div class="result-label">{{ result.label | translate }}</div>
+                  <div class="result-value">
+                    {{ result.value | number : '1.2-2' }}
+                    @if (result.extention) {
+                      <span class="result-ext">{{ result.extention | translate }}</span>
+                    }
+                  </div>
+                </div>
+              }
             </div>
-          }
-        </div>
+          </div>
+        }
       </div>
     }
   </div>

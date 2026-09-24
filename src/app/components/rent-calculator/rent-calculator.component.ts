@@ -33,10 +33,10 @@ export class RentCalculatorComponent implements OnInit, OnDestroy {
   ];
 
   public rentCalculatorOutputProperties: CalculatorResultModel[] = [
-    { label: 'purchase_costs', placeholder: null, value: null },
-    { label: 'credit', placeholder: null, value: null },
-    { label: 'monthly_payment', placeholder: null, value: null },
-    { label: 'evaluation', placeholder: null, value: null, extention: 'square_meters_extension' }
+    { label: 'purchase_costs', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'credit', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'monthly_payment', placeholder: null, value: null, category: 'cat_loan' },
+    { label: 'evaluation', placeholder: null, value: null, extention: 'square_meters_extension', category: 'cat_loan' }
   ];
 
   constructor(

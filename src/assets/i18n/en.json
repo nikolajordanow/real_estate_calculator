@@ -46,5 +46,10 @@
   "down_payment": "Down Payment",
   "square_meters": "Square Meters",
   "evaluation": "Evaluation",
-  "square_meters_extension": "/m²"
+  "square_meters_extension": "/m²",
+  "cat_purchase": "Purchase",
+  "cat_taxes": "Taxes",
+  "cat_profit": "Profit",
+  "cat_vat": "VAT",
+  "cat_loan": "Loan"
 }

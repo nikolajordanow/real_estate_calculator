@@ -30,13 +30,13 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
   ];
 
   public flipCalculatorOutputProperties: CalculatorResultModel[] = [
-    { label: 'taxes', placeholder: null, value: null },
-    { label: 'total_cost', placeholder: null, value: null },
-    { label: 'profit_tax', placeholder: null, value: null },
-    { label: 'commission', placeholder: null, value: null },
-    { label: 'profit_eur', placeholder: null, value: null },
-    { label: 'gross_profit_percent', placeholder: null, value: null, extention: '%' },
-    { label: 'profit_percent', placeholder: null, value: null, extention: '%' }
+    { label: 'taxes', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'total_cost', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'profit_tax', placeholder: null, value: null, category: 'cat_taxes' },
+    { label: 'commission', placeholder: null, value: null, category: 'cat_taxes' },
+    { label: 'profit_eur', placeholder: null, value: null, category: 'cat_profit' },
+    { label: 'gross_profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' },
+    { label: 'profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' }
   ];
 
   constructor(

@@ -32,16 +32,16 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
   ];
 
   public vatFlipCalculatorOutputProperties: CalculatorResultModel[] = [
-    { label: 'vat_on_purchase', placeholder: null, value: null },
-    { label: 'vat_on_repair', placeholder: null, value: null },
-    { label: 'vat_on_sale', placeholder: null, value: null },
-    { label: 'net_vat', placeholder: null, value: null },
-    { label: 'taxes', placeholder: null, value: null },
-    { label: 'commission', placeholder: null, value: null },
-    { label: 'profit_tax', placeholder: null, value: null },
-    { label: 'profit_eur', placeholder: null, value: null },
-    { label: 'gross_profit_percent', placeholder: null, value: null, extention: '%' },
-    { label: 'profit_percent', placeholder: null, value: null, extention: '%' }
+    { label: 'vat_on_purchase', placeholder: null, value: null, category: 'cat_vat' },
+    { label: 'vat_on_repair', placeholder: null, value: null, category: 'cat_vat' },
+    { label: 'vat_on_sale', placeholder: null, value: null, category: 'cat_vat' },
+    { label: 'net_vat', placeholder: null, value: null, category: 'cat_vat' },
+    { label: 'taxes', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'commission', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'profit_tax', placeholder: null, value: null, category: 'cat_taxes' },
+    { label: 'profit_eur', placeholder: null, value: null, category: 'cat_profit' },
+    { label: 'gross_profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' },
+    // { label: 'profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' }
   ];
 
   constructor(

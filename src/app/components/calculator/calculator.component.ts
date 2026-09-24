@@ -30,4 +30,24 @@ export class CalculatorComponent {
   }
 
   public showResults: boolean = false;
+
+  private static readonly CATEGORY_ORDER: string[] = ['cat_purchase', 'cat_vat', 'cat_taxes', 'cat_loan', 'cat_profit'];
+
+  public get groupedResults(): { category: string; items: CalculatorResultModel[] }[] {
+    const groups = new Map<string, CalculatorResultModel[]>();
+    for (const result of this.results) {
+      const cat = result.category ?? '';
+      if (!groups.has(cat)) groups.set(cat, []);
+      groups.get(cat)!.push(result);
+    }
+
+    const order = CalculatorComponent.CATEGORY_ORDER;
+    return Array.from(groups.entries())
+      .map(([category, items]) => ({ category, items }))
+      .sort((a, b) => {
+        const ai = order.indexOf(a.category);
+        const bi = order.indexOf(b.category);
+        return (ai === -1 ? order.length : ai) - (bi === -1 ? order.length : bi);
+      });
+  }
 }
