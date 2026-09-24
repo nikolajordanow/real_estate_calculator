@@ -1,3 +1,18 @@
+.calculator-picker {
+  display: flex;
+  justify-content: center;
+  padding: 24px 24px 0;
+
+  mat-form-field {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 16px 16px 0;
+  }
+}
+
 .tab-container {
   padding: 28px 24px;
   max-width: 1400px;

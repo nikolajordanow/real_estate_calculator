@@ -1,32 +1,33 @@
-<mat-tab-group animationDuration="0ms" mat-stretch-tabs="false" mat-align-tabs="center">
-  <mat-tab label="{{ 'vat_flip' | translate }}">
-    <div class="tab-container">
+<div class="calculator-picker">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    <mat-label>{{ 'choose_calculator' | translate }}</mat-label>
+    <mat-select [(value)]="selectedCalculator">
+      @for (calculator of calculators; track calculator) {
+        <mat-option [value]="calculator">{{ calculator | translate }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="tab-container">
+  @switch (selectedCalculator) {
+    @case ('vat_flip') {
       <vat-flip-calculator></vat-flip-calculator>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ 'vat_flip_deed' | translate }}">
-    <div class="tab-container">
+    }
+    @case ('vat_flip_deed') {
       <vat-flip-deed-calculator></vat-flip-deed-calculator>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ 'flip' | translate }}">
-    <div class="tab-container">
+    }
+    @case ('flip') {
       <flip-calculator></flip-calculator>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ 'rent' | translate }}">
-    <div class="tab-container">
+    }
+    @case ('rent') {
       <rent-calculator></rent-calculator>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ 'loan' | translate }}">
-    <div class="tab-container">
+    }
+    @case ('loan') {
       <loan-calculator></loan-calculator>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ 'constants' | translate }}">
-    <div class="tab-container">
+    }
+    @case ('constants') {
       <calculator-sidebar></calculator-sidebar>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+    }
+  }
+</div>

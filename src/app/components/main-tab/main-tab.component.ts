@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { RentCalculatorComponent } from '../rent-calculator/rent-calculator.component';
 import { FlipCalculatorComponent } from '../flip-calculator/flip-calculator.component';
 import { VatFlipCalculatorComponent } from '../vat-flip-calculator/vat-flip-calculator.component';
@@ -14,7 +15,8 @@ import { CalculatorSidebarComponent } from "../calculator-sidebar/calculator-sid
   styleUrl: './main-tab.component.scss',
   standalone: true,
   imports: [
-    MatTabsModule,
+    MatFormFieldModule,
+    MatSelectModule,
     RentCalculatorComponent,
     FlipCalculatorComponent,
     VatFlipCalculatorComponent,
@@ -25,5 +27,8 @@ import { CalculatorSidebarComponent } from "../calculator-sidebar/calculator-sid
 ]
 })
 export class MainTabComponent {
+  // Translation keys, also used as the calculator ids
+  public readonly calculators = ['vat_flip', 'vat_flip_deed', 'flip', 'rent', 'loan', 'constants'];
 
+  public selectedCalculator = this.calculators[0];
 }
