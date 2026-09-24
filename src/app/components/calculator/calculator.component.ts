@@ -1,19 +1,21 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { DecimalPipe } from '@angular/common';
 
 import { CalculatorInputModel } from '../../models/calculator-model/calculator-input';
 import { CalculatorResultModel } from '../../models/calculator-model/calculator-result';
 
 import { TranslatePipe } from '@ngx-translate/core';
 
+export const DEFAULT_CATEGORY_ORDER: string[] = ['cat_purchase', 'cat_vat', 'cat_taxes', 'cat_loan', 'cat_profit'];
+export const FLIP_CATEGORY_ORDER: string[] = ['cat_profit', 'cat_purchase', 'cat_vat', 'cat_taxes', 'cat_loan'];
+
 @Component({
   selector: 'calculator',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    DecimalPipe,
     TranslatePipe,
   ],
   templateUrl: './calculator.component.html',
@@ -31,4 +33,24 @@ export class CalculatorComponent {
   }
 
   public showResults: boolean = false;
+
+  @Input() public categoryOrder: string[] = DEFAULT_CATEGORY_ORDER;
+
+  public get groupedResults(): { category: string; items: CalculatorResultModel[] }[] {
+    const groups = new Map<string, CalculatorResultModel[]>();
+    for (const result of this.results) {
+      const cat = result.category ?? '';
+      if (!groups.has(cat)) groups.set(cat, []);
+      groups.get(cat)!.push(result);
+    }
+
+    const order = this.categoryOrder;
+    return Array.from(groups.entries())
+      .map(([category, items]) => ({ category, items }))
+      .sort((a, b) => {
+        const ai = order.indexOf(a.category);
+        const bi = order.indexOf(b.category);
+        return (ai === -1 ? order.length : ai) - (bi === -1 ? order.length : bi);
+      });
+  }
 }

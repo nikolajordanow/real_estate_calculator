@@ -3,4 +3,5 @@ export interface CalculatorResultModel {
   placeholder: number | null;
   value?: number | null;
   extention?: string;
+  category?: string;
 }

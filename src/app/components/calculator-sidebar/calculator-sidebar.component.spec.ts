@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { CalculatorSidebarComponent } from './calculator-sidebar.component';
 
@@ -8,7 +9,7 @@ describe('CalculatorSidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CalculatorSidebarComponent]
+      imports: [CalculatorSidebarComponent, TranslateModule.forRoot()]
     })
     .compileComponents();
 

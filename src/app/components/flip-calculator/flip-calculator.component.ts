@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CalculatorComponent } from "../calculator/calculator.component";
+import { CalculatorComponent, FLIP_CATEGORY_ORDER } from "../calculator/calculator.component";
 import { CalculatorInputModel } from '../../models/calculator-model/calculator-input';
 import { CalculatorResultModel } from '../../models/calculator-model/calculator-result';
 import { ConstantsService } from '../../../shared/services/constants.service';
-import { EUR_TO_BGN } from '../../../shared/consts';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -31,13 +30,16 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
   ];
 
   public flipCalculatorOutputProperties: CalculatorResultModel[] = [
-    { label: 'taxes', placeholder: null, value: null },
-    { label: 'total_cost', placeholder: null, value: null },
-    { label: 'profit_tax', placeholder: null, value: null },
-    { label: 'commission', placeholder: null, value: null },
-    { label: 'profit_eur', placeholder: null, value: null },
-    { label: 'profit_bgn', placeholder: null, value: null }
+    { label: 'taxes', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'total_cost', placeholder: null, value: null, category: 'cat_purchase' },
+    { label: 'profit_tax', placeholder: null, value: null, category: 'cat_taxes' },
+    { label: 'commission', placeholder: null, value: null, category: 'cat_taxes' },
+    { label: 'profit_eur', placeholder: null, value: null, category: 'cat_profit' },
+    { label: 'gross_profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' },
+    { label: 'profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' }
   ];
+
+  public readonly resultCategoryOrder = FLIP_CATEGORY_ORDER;
 
   constructor(
     private readonly _constantsService: ConstantsService
@@ -57,17 +59,16 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
   }
 
   public calculateResults(): void {
-    const state = this._constantsService.getState();
-    const _taxesPercent = state.taxesPercent;
-    const _commissionPercent = state.saleCommissionPercent;
+    const { taxesPercent, saleCommissionPercent } = this._constantsService.getState();
+    const [purchasePriceInput, repairCostsInput, salePriceInput, profitTaxInput] = this.flipCalculatorInputProperties;
 
-    const purchasePrice = Number(this.flipCalculatorInputProperties[0].value) || 0;
-    const repairCosts = Number(this.flipCalculatorInputProperties[1].value) || 0;
-    const salePrice = Number(this.flipCalculatorInputProperties[2].value) || 0;
-    const profitTax = Number(this.flipCalculatorInputProperties[3].value) || 0;
+    const purchasePrice = purchasePriceInput.value ?? 0;
+    const repairCosts = repairCostsInput.value ?? 0;
+    const salePrice = salePriceInput.value ?? 0;
+    const profitTax = profitTaxInput.value ?? 0;
 
     // taxes
-    const taxes = purchasePrice * (_taxesPercent / 100);
+    const taxes = purchasePrice * (taxesPercent / 100);
     this.flipCalculatorOutputProperties[0].value = taxes;
 
     // total cost
@@ -75,7 +76,7 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
     this.flipCalculatorOutputProperties[1].value = totalCost;
 
     // commission
-    const commission = salePrice * (_commissionPercent / 100);
+    const commission = salePrice * (saleCommissionPercent / 100);
     this.flipCalculatorOutputProperties[3].value = commission;
 
     // credit (purchase + repair + taxes)
@@ -87,15 +88,19 @@ export class FlipCalculatorComponent implements OnInit, OnDestroy {
     // gross profit
     const grossProfit = salePrice - repaymentFee - totalCost - commission;
 
-    // net profit EUR
-    const netProfitEUR = grossProfit - profitTax;
-    this.flipCalculatorOutputProperties[4].value = netProfitEUR;
-
-    // net profit BGN
-    const netProfitBGN = netProfitEUR * EUR_TO_BGN;
-    this.flipCalculatorOutputProperties[5].value = netProfitBGN;
+    // net profit
+    const netProfit = grossProfit - profitTax;
+    this.flipCalculatorOutputProperties[4].value = netProfit;
 
     // profit tax (already input by user)
     this.flipCalculatorOutputProperties[2].value = profitTax;
+
+    // gross profit percent (gross profit as % of total investment)
+    const grossProfitPercent = totalCost > 0 ? (grossProfit / totalCost) * 100 : 0;
+    this.flipCalculatorOutputProperties[5].value = grossProfitPercent;
+
+    // profit percent (net profit as % of total investment)
+    const profitPercent = totalCost > 0 ? (netProfit / totalCost) * 100 : 0;
+    this.flipCalculatorOutputProperties[6].value = profitPercent;
   }
 }

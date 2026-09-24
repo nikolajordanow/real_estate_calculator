@@ -1,13 +1,19 @@
-<div class="calculator-sidebar bg-light rounded shadow p-3">
-    <h6 class="text-center">{{ 'constants' | translate }}</h6>
-    <div class="list-group-item" *ngFor="let key of objectKeys(consts)">
-        <label>{{ consts[key].label | translate }}:</label>
-        <input type="number" class="constants-input form-control" 
-            [(ngModel)]="consts[key].value" 
-            [disabled]="consts[key].disabled">
-    </div>
-    <button mat-raised-button color="primary" class="w-100 mt-3" 
-        (click)="saveConstants()">
-        {{ 'save' | translate }}
-    </button>
+<div class="constants-card">
+  <h6 class="constants-title">{{ 'constants' | translate }}</h6>
+  <div class="constants-list">
+    @for (key of objectKeys(consts); track key) {
+      <div class="constant-field">
+        <label class="constant-label">{{ consts[key].label | translate }}</label>
+        <input
+          type="number"
+          class="constant-input"
+          [(ngModel)]="consts[key].value"
+          [disabled]="consts[key].disabled"
+        >
+      </div>
+    }
+  </div>
+  <button mat-raised-button color="primary" class="save-btn" (click)="saveConstants()">
+    {{ 'save' | translate }}
+  </button>
 </div>

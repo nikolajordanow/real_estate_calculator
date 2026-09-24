@@ -1,0 +1,14 @@
+<calculator
+  [inputs]="vatFlipDeedCalculatorInputProperties"
+  [results]="vatFlipDeedCalculatorOutputProperties"
+  [categoryOrder]="resultCategoryOrder"
+  (calculate)="calculateResults()"
+>
+  <mat-slide-toggle
+    class="vat-toggle"
+    [(ngModel)]="purchaseIncludesVat"
+    (ngModelChange)="onPurchaseIncludesVatChange()"
+  >
+    {{ 'purchase_includes_vat' | translate }}
+  </mat-slide-toggle>
+</calculator>

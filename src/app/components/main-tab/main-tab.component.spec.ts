@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MainTabComponent } from './main-tab.component';
 
@@ -8,7 +10,7 @@ describe('MainTabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainTabComponent]
+      imports: [MainTabComponent, TranslateModule.forRoot(), NoopAnimationsModule]
     })
     .compileComponents();
 

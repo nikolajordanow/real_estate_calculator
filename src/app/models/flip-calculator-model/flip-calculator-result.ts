@@ -4,5 +4,4 @@ export interface FlipCalculatorResultModel {
   profitTax: number;
   commission: number;
   profitEUR: number;
-  profitBGN: number;
 }
