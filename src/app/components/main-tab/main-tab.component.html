@@ -2,6 +2,8 @@
   <mat-form-field appearance="outline" subscriptSizing="dynamic">
     <mat-label>{{ 'choose_calculator' | translate }}</mat-label>
     <mat-select [(value)]="selectedCalculator">
+      <!-- Explicit trigger so the label updates once translations finish loading -->
+      <mat-select-trigger>{{ selectedCalculator | translate }}</mat-select-trigger>
       @for (calculator of calculators; track calculator) {
         <mat-option [value]="calculator">{{ calculator | translate }}</mat-option>
       }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CalculatorComponent } from "../calculator/calculator.component";
+import { CalculatorComponent, FLIP_CATEGORY_ORDER } from "../calculator/calculator.component";
 import { CalculatorInputModel } from '../../models/calculator-model/calculator-input';
 import { CalculatorResultModel } from '../../models/calculator-model/calculator-result';
 import { ConstantsService } from '../../../shared/services/constants.service';
@@ -49,6 +49,8 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
     { label: 'gross_profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' },
     // { label: 'profit_percent', placeholder: null, value: null, extention: '%', category: 'cat_profit' }
   ];
+
+  public readonly resultCategoryOrder = FLIP_CATEGORY_ORDER;
 
   constructor(
     private readonly _constantsService: ConstantsService

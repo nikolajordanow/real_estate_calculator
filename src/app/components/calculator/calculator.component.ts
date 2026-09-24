@@ -7,6 +7,9 @@ import { CalculatorResultModel } from '../../models/calculator-model/calculator-
 
 import { TranslatePipe } from '@ngx-translate/core';
 
+export const DEFAULT_CATEGORY_ORDER: string[] = ['cat_purchase', 'cat_vat', 'cat_taxes', 'cat_loan', 'cat_profit'];
+export const FLIP_CATEGORY_ORDER: string[] = ['cat_profit', 'cat_purchase', 'cat_vat', 'cat_taxes', 'cat_loan'];
+
 @Component({
   selector: 'calculator',
   standalone: true,
@@ -31,7 +34,7 @@ export class CalculatorComponent {
 
   public showResults: boolean = false;
 
-  private static readonly CATEGORY_ORDER: string[] = ['cat_purchase', 'cat_vat', 'cat_taxes', 'cat_loan', 'cat_profit'];
+  @Input() public categoryOrder: string[] = DEFAULT_CATEGORY_ORDER;
 
   public get groupedResults(): { category: string; items: CalculatorResultModel[] }[] {
     const groups = new Map<string, CalculatorResultModel[]>();
@@ -41,7 +44,7 @@ export class CalculatorComponent {
       groups.get(cat)!.push(result);
     }
 
-    const order = CalculatorComponent.CATEGORY_ORDER;
+    const order = this.categoryOrder;
     return Array.from(groups.entries())
       .map(([category, items]) => ({ category, items }))
       .sort((a, b) => {
