@@ -46,5 +46,10 @@
   "down_payment": "Самоучастие",
   "square_meters": "Квадратура",
   "evaluation": "Оценка",
-  "square_meters_extension": "/м²"
+  "square_meters_extension": "/м²",
+  "cat_purchase": "Покупка",
+  "cat_taxes": "Данъци",
+  "cat_profit": "Печалба",
+  "cat_vat": "ДДС",
+  "cat_loan": "Кредит"
 }
