@@ -2,4 +2,12 @@
   [inputs]="vatFlipCalculatorInputProperties"
   [results]="vatFlipCalculatorOutputProperties"
   (calculate)="calculateResults()"
-></calculator>
+>
+  <mat-slide-toggle
+    class="vat-toggle"
+    [(ngModel)]="purchaseIncludesVat"
+    (ngModelChange)="onPurchaseIncludesVatChange()"
+  >
+    {{ 'purchase_includes_vat' | translate }}
+  </mat-slide-toggle>
+</calculator>

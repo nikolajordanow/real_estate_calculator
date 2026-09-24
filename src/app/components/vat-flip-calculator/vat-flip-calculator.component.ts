@@ -6,6 +6,8 @@ import { CalculatorInputModel } from '../../models/calculator-model/calculator-i
 import { CalculatorResultModel } from '../../models/calculator-model/calculator-result';
 import { ConstantsService } from '../../../shared/services/constants.service';
 import { Subscription } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'vat-flip-calculator',
@@ -17,6 +19,8 @@ import { Subscription } from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     CalculatorComponent,
+    TranslatePipe,
+    MatSlideToggleModule,
   ]
 })
 export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
@@ -24,6 +28,8 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
 
   private readonly VAT_DIVISOR = 1.2;
   private readonly CORPORATE_TAX_RATE = 0.10;
+
+  public purchaseIncludesVat = true;
 
   public vatFlipCalculatorInputProperties: CalculatorInputModel[] = [
     { placeholder: 0, label: 'purchase_price_vat', value: null },
@@ -61,6 +67,11 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
     }
   }
 
+  public onPurchaseIncludesVatChange(): void {
+    this.vatFlipCalculatorInputProperties[0].label = this.purchaseIncludesVat ? 'purchase_price_vat' : 'purchase_price';
+    this.calculateResults();
+  }
+
   public calculateResults(): void {
     const { taxesPercent, saleCommissionPercent } = this._constantsService.getState();
     const [purchasePriceInput, repairCostsInput, salePriceInput] = this.vatFlipCalculatorInputProperties;
@@ -69,8 +80,8 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
     const renovationGross = repairCostsInput.value ?? 0;
     const saleGross = salePriceInput.value ?? 0;
 
-    // Extract net values and VAT from gross (all inputs include VAT)
-    const purchaseNet = purchaseGross / this.VAT_DIVISOR;
+    // Extract net values and VAT from gross (purchase includes VAT only when selected)
+    const purchaseNet = this.purchaseIncludesVat ? purchaseGross / this.VAT_DIVISOR : purchaseGross;
     const purchaseVat = purchaseGross - purchaseNet;
     this.vatFlipCalculatorOutputProperties[0].value = purchaseVat;
 
@@ -109,7 +120,7 @@ export class VatFlipCalculatorComponent implements OnInit, OnDestroy {
     const totalNetInvestment = purchaseNet + renovationNet + localTaxesAndFees;
     const grossProfitPercent = totalNetInvestment > 0 ? (profitBeforeCorporateTax / totalNetInvestment) * 100 : 0;
     this.vatFlipCalculatorOutputProperties[8].value = grossProfitPercent;
-    const profitPercent = totalNetInvestment > 0 ? (finalProfit / totalNetInvestment) * 100 : 0;
-    this.vatFlipCalculatorOutputProperties[9].value = profitPercent;
+    // const profitPercent = totalNetInvestment > 0 ? (finalProfit / totalNetInvestment) * 100 : 0;
+    // this.vatFlipCalculatorOutputProperties[9].value = profitPercent;
   }
 }

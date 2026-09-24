@@ -20,6 +20,8 @@
       }
     </div>
 
+    <ng-content></ng-content>
+
     @if (showResults) {
       <div class="results-section">
         @for (group of groupedResults; track group.category) {
